@@ -22,11 +22,6 @@ use InvalidArgumentException;
  */
 class SequenceMatcher
 {
-    /**
-     * @var string|array Either a string or an array containing a callback function to determine
-     * if a line is "junk" or not.
-     */
-    private $junkCallback;
 
     /**
      * @var array The first sequence to compare against.
@@ -37,11 +32,6 @@ class SequenceMatcher
      * @var array The second sequence.
      */
     private $new;
-
-    /**
-     * @var array Array of characters that are considered junk from the second sequence. Characters are the array key.
-     */
-    private $junkDict = [];
 
     /**
      * @var array Array of indices that do not contain junk elements.
@@ -82,14 +72,11 @@ class SequenceMatcher
      * @param string|array $old A string or array containing the lines to compare against.
      * @param string|array $new A string or array containing the lines to compare.
      * @param array $options
-     * @param string|array|null $junkCallback Either an array or string that references a callback function
-     * (if there is one) to determine 'junk' characters.
      */
-    public function __construct($old, $new, array $options = [], $junkCallback = null)
+    public function __construct($old, $new, array $options = [])
     {
         $this->old = [];
         $this->new = [];
-        $this->junkCallback = $junkCallback;
         $this->setOptions($options);
         $this->setSequences($old, $new);
     }
@@ -188,39 +175,6 @@ class SequenceMatcher
         foreach (array_keys($popularDict) as $char) {
             unset($this->b2j[$char]);
         }
-
-        $this->junkDict = [];
-        if (is_callable($this->junkCallback)) {
-            foreach (array_keys($popularDict) as $char) {
-                if (call_user_func($this->junkCallback, $char)) {
-                    $this->junkDict[$char] = 1;
-                    unset($popularDict[$char]);
-                }
-            }
-
-            foreach (array_keys($this->b2j) as $char) {
-                if (call_user_func($this->junkCallback, $char)) {
-                    $this->junkDict[$char] = 1;
-                    unset($this->b2j[$char]);
-                }
-            }
-        }
-    }
-
-    /**
-     * Checks if a particular character is in the junk dictionary
-     * for the list of junk characters.
-     *
-     * @param string $bString
-     * @return bool $b True if the character is considered junk. False if not.
-     */
-    private function isBJunk(string $bString): bool
-    {
-        if (isset($this->junkDict[$bString])) {
-            return true;
-        }
-
-        return false;
     }
 
     /**
@@ -246,7 +200,6 @@ class SequenceMatcher
     public function findLongestMatch(int $alo, int $ahi, int $blo, int $bhi): array
     {
         $old = $this->old;
-        $new = $this->new;
 
         $bestI = $alo;
         $bestJ = $blo;
@@ -280,7 +233,6 @@ class SequenceMatcher
         while (
             $bestI > $alo &&
             $bestJ > $blo &&
-            !$this->isBJunk($new[$bestJ - 1]) &&
             !$this->linesAreDifferent($bestI - 1, $bestJ - 1)
         ) {
                 --$bestI;
@@ -291,7 +243,6 @@ class SequenceMatcher
         while (
             $bestI + $bestSize < $ahi &&
             ($bestJ + $bestSize) < $bhi &&
-            !$this->isBJunk($new[$bestJ + $bestSize]) &&
             !$this->linesAreDifferent($bestI + $bestSize, $bestJ + $bestSize)
         ) {
                 ++$bestSize;
@@ -300,7 +251,6 @@ class SequenceMatcher
         while (
             $bestI > $alo &&
             $bestJ > $blo &&
-            $this->isBJunk($new[$bestJ - 1]) &&
             !$this->linesAreDifferent($bestI - 1, $bestJ - 1)
         ) {
                 --$bestI;
@@ -311,7 +261,6 @@ class SequenceMatcher
         while (
             $bestI + $bestSize < $ahi &&
             $bestJ + $bestSize < $bhi &&
-            $this->isBJunk($new[$bestJ + $bestSize]) &&
             !$this->linesAreDifferent($bestI + $bestSize, $bestJ + $bestSize)
         ) {
                     ++$bestSize;
