@@ -19,7 +19,7 @@ use OutOfRangeException;
  * A comprehensive library for comparing two strings and generating the differences between them in multiple formats.
  * (unified, side by side, inline, HTML, etc.)
  *
- * PHP version 7.2 or greater
+ * PHP version 7.3 or greater
  *
  * @package         jblond
  * @author          Chris Boulton <chris.boulton@interspire.com>
@@ -27,7 +27,7 @@ use OutOfRangeException;
  * @author          Ferry Cools <info@DigiLive.nl>
  * @copyright   (c) 2020 Mario Brandt
  * @license         New BSD License http://www.opensource.org/licenses/bsd-license.php
- * @version         2.2.1
+ * @version         3.0.0
  * @link            https://github.com/JBlond/php-diff
  */
 class Diff
