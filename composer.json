@@ -29,10 +29,10 @@
         "ext-pcre": "*"
     },
     "require-dev": {
-        "phpunit/phpunit": "8.*",
-        "squizlabs/php_codesniffer": "*",
+        "jblond/php-cli": "^1.0",
         "phpmd/phpmd": "2.*",
-        "jblond/php-cli": "^1.0"
+        "phpunit/phpunit": "^9.*",
+        "squizlabs/php_codesniffer": "*"
     },
     "suggest": {
         "jblond/php-cli": "^1.0"
@@ -43,7 +43,8 @@
         }
     },
     "config": {
-        "classmap-authoritative": true
+        "classmap-authoritative": true,
+        "sort-packages": true
     },
     "scripts": {
         "phpunit": "phpunit ./tests/",
