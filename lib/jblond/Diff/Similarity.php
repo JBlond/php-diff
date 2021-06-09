@@ -164,4 +164,40 @@ class Similarity extends SequenceMatcher
     {
         return $sum + ($triple[count($triple) - 1]);
     }
+
+    /**
+     * Get diff statistics
+     *
+     * @return array
+     */
+    public function getDifference(): array
+    {
+        $return = [
+            'inserted'     => 0,
+            'deleted'      => 0,
+            'notModified'  => 0,
+            'replaced'     => 0,
+        ];
+
+        foreach ($this->getGroupedOpCodes() as $chunk) {
+            foreach ($chunk as [$string, $one, $two, $three, $four]) {
+                switch ($string) {
+                    case 'delete':
+                        $return['deleted'] += 1;
+                        break;
+                    case 'equal':
+                        $return['notModified'] += 1;
+                        break;
+                    case 'insert':
+                        $return['inserted'] += 1;
+                        break;
+                    case 'replace':
+                        $return['replaced'] += 1;
+                        break;
+                }
+            }
+        }
+
+        return $return;
+    }
 }

@@ -270,11 +270,11 @@ class Diff
      *
      * Once calculated, the results are cached in the diff class instance.
      *
-     * @param   int  $method  Calculation method.
+     * @param int $method  Calculation method.
      *
      * @return float Similarity ratio.
      */
-    public function getSimilarity($method = Similarity::CALC_DEFAULT): float
+    public function getSimilarity(int $method = Similarity::CALC_DEFAULT): float
     {
         if ($this->similarity !== null) {
             return $this->similarity;
@@ -284,5 +284,16 @@ class Diff
         $this->similarity = $similarity->getSimilarity($method);
 
         return $this->similarity;
+    }
+
+    /**
+     * Get diff statistics
+     *
+     * @return array
+     */
+    public function getStatistics(): array
+    {
+        $similarity = new Similarity($this->version1, $this->version2, $this->options);
+        return $similarity->getDifference();
     }
 }
