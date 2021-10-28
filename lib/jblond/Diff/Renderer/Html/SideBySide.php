@@ -31,6 +31,7 @@ class SideBySide extends MainRenderer implements SubRendererInterface
      *              - deleteMarkers     Markers for removed text.
      *              - title1            Title of the 1st version of text.
      *              - title2            Title of the 2nd version of text.
+     *              - showHeader        True to show the table header.
      */
     private $subOptions = [
         'format'        => 'html',
@@ -38,6 +39,7 @@ class SideBySide extends MainRenderer implements SubRendererInterface
         'deleteMarkers' => ['<del>', '</del>'],
         'title1'        => 'Version1',
         'title2'        => 'Version2',
+        'showHeader'    => true,
     ];
 
     /**
@@ -72,8 +74,12 @@ class SideBySide extends MainRenderer implements SubRendererInterface
      */
     public function generateDiffHeader(): string
     {
-        return <<<HTML
+        $html =  <<<HTML
 <table class="Differences DifferencesSideBySide">
+HTML;
+
+        if ($this->options['showHeader']) {
+            $html .= <<<HTML
     <thead>
         <tr>
             <th colspan="2">{$this->options['title1']}</th>
@@ -81,6 +87,9 @@ class SideBySide extends MainRenderer implements SubRendererInterface
         </tr>
     </thead>
 HTML;
+        }
+
+        return $html;
     }
 
     /**
