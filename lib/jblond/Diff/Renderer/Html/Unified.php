@@ -118,7 +118,6 @@ HTML;
         $html = '';
 
         foreach ($changes['base']['lines'] as $lineNo => $line) {
-            $this->stats['equal']++;
             $fromLine = $changes['base']['offset'] + $lineNo + 1;
             $toLine   = $changes['changed']['offset'] + $lineNo + 1;
 
@@ -241,7 +240,6 @@ HTML;
         $html = '';
 
         foreach ($changes['base']['lines'] as $lineNo => $line) {
-            $this->stats['ignore']++;
             $fromLine = $changes['base']['offset'] + $lineNo + 1;
             $html     .= <<<HTML
 <tr>

@@ -117,7 +117,6 @@ HTML;
         $html = '';
 
         foreach ($changes['base']['lines'] as $lineNo => $baseLine) {
-            $this->stats['equal']++;
             $fromLine = $changes['base']['offset'] + $lineNo + 1;
             $toLine   = $changes['changed']['offset'] + $lineNo + 1;
 
@@ -305,7 +304,6 @@ HTML;
 
         // Is below comparison result ever false?
         if (count($changes['base']['lines']) >= count($changes['changed']['lines'])) {
-            $this->stats['ignore']++;
             foreach ($changes['base']['lines'] as $lineNo => $line) {
                 $fromLine    = $changes['base']['offset'] + $lineNo + 1;
                 $toLine      = '&nbsp;';

@@ -36,11 +36,9 @@ class MainRenderer extends MainRendererAbstract
      * @var array
      */
     protected $stats = [
-        'equal' => 0,
         'insert' => 0,
         'delete' => 0,
         'replace' => 0,
-        'ignore' => 0,
     ];
 
     /**
