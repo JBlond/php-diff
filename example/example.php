@@ -83,6 +83,7 @@ $rendererOptions = [
 // Generate a side by side diff.
 $renderer = new SideBySide($rendererOptions);
 echo $diff->isIdentical() ? 'No differences found.' : $diff->Render($renderer);
+print_r($renderer->getStats());
 ?>
 
 <h2>HTML Unified Diff</h2>
@@ -90,6 +91,7 @@ echo $diff->isIdentical() ? 'No differences found.' : $diff->Render($renderer);
 // Generate an unified diff.
 $renderer = new Unified($rendererOptions);
 echo $diff->isIdentical() ? 'No differences found.' : $diff->Render($renderer);
+print_r($renderer->getStats());
 ?>
 
 <h2>HTML Merged Diff</h2>

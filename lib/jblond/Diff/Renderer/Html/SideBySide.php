@@ -61,8 +61,15 @@ class SideBySide extends MainRenderer implements SubRendererInterface
     public function render()
     {
         $changes = parent::renderSequences();
-
         return parent::renderOutput($changes, $this);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getStats()
+    {
+        return parent::getStats();
     }
 
     /**
@@ -140,6 +147,7 @@ HTML;
         $html = '';
 
         foreach ($changes['changed']['lines'] as $lineNo => $line) {
+            $this->stats['insert']++;
             $toLine = $changes['changed']['offset'] + $lineNo + 1;
 
             $html .= <<<HTML
@@ -167,6 +175,7 @@ HTML;
         $html = '';
 
         foreach ($changes['base']['lines'] as $lineNo => $line) {
+            $this->stats['delete']++;
             $fromLine = $changes['base']['offset'] + $lineNo + 1;
 
             $html .= <<<HTML
@@ -196,6 +205,7 @@ HTML;
         // Is below comparison result ever false?
         if (count($changes['base']['lines']) >= count($changes['changed']['lines'])) {
             foreach ($changes['base']['lines'] as $lineNo => $line) {
+                $this->stats['replace']++;
                 $fromLine    = $changes['base']['offset'] + $lineNo + 1;
                 $toLine      = '&nbsp;';
                 $changedLine = '&nbsp;';

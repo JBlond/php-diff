@@ -67,6 +67,14 @@ class Unified extends MainRenderer implements SubRendererInterface
 
     /**
      * @inheritDoc
+     */
+    public function getStats()
+    {
+        return parent::getStats();
+    }
+
+    /**
+     * @inheritDoc
      *
      * @return string HTML code representation of a table's header.
      */
@@ -135,6 +143,7 @@ HTML;
         $html = '';
 
         foreach ($changes['changed']['lines'] as $lineNo => $line) {
+            $this->stats['insert']++;
             $toLine = $changes['changed']['offset'] + $lineNo + 1;
 
             $html .= <<<HTML
@@ -162,6 +171,7 @@ HTML;
         $html = '';
 
         foreach ($changes['base']['lines'] as $lineNo => $line) {
+            $this->stats['delete']++;
             $fromLine = $changes['base']['offset'] + $lineNo + 1;
 
             $html .= <<<HTML
@@ -189,6 +199,7 @@ HTML;
         $html = '';
 
         foreach ($changes['base']['lines'] as $lineNo => $line) {
+            $this->stats['replace']++;
             $fromLine = $changes['base']['offset'] + $lineNo + 1;
             $line     = str_replace(["\0", "\1"], $this->options['deleteMarkers'], $line);
             $html     .= <<<HTML

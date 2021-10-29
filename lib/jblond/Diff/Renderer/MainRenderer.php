@@ -33,6 +33,15 @@ class MainRenderer extends MainRendererAbstract
     private $lastTag;
 
     /**
+     * @var array
+     */
+    protected $stats = [
+        'insert' => 0,
+        'delete' => 0,
+        'replace' => 0,
+    ];
+
+    /**
      * Generate a string representation of changes between version1 and version2.
      *
      * This method is called by the renderers which extends this class.
@@ -83,6 +92,7 @@ class MainRenderer extends MainRendererAbstract
                         (count($change['base']['lines']) > count($change['changed']['lines'])) ? 'delete' : 'insert';
                 }
                 $output .= $subRenderer->generateBlockHeader($change);
+
                 switch ($change['tag']) {
                     case 'equal':
                         $output .= $subRenderer->generateLinesEqual($change);
@@ -111,6 +121,14 @@ class MainRenderer extends MainRendererAbstract
         return $output;
     }
 
+    /**
+     * Stat collection
+     * @return array|int[]
+     */
+    public function getStats()
+    {
+        return $this->stats;
+    }
     /**
      * Render the sequences where differences between them are marked.
      *
