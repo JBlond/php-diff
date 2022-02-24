@@ -89,15 +89,31 @@ HTML;
      *
      * @return string HTML code representing table rows showing text which is 'Out Of Context'
      */
-    public function generateLinesOutOfContext($change): string
+    public function generateLinesOutOfContext(array $changes): string
     {
-        return <<<HTML
-<tr>
-    <th>&hellip;</th>
-    <th>&hellip;</th>
-    <td class="Left Skipped">&hellip;</td>
+        $html = <<<HTML
+<tr id="{$changes['base']['offset']}" class="collapsible">
+    <th>&#9654;</th>
+    <th></th>
+    <td>&hellip;</td>
 </tr>
 HTML;
+
+        foreach ($changes['base']['lines'] as $lineNo => $line) {
+            $fromLine = $changes['base']['offset'] + $lineNo + 1;
+            $toLine   = $changes['changed']['offset'] + $lineNo + 1;
+            $entity   = $lineNo == array_key_last($changes['base']['lines']) ? '&#9650;' : '&#9660;';
+
+            $html .= <<<HTML
+<tr class="collapsible closed {$changes['base']['offset']}">
+    <th>$entity$fromLine</th>
+    <th>$toLine</th>
+    <td class="Left Skipped">$line</td>
+</tr>
+HTML;
+        }
+
+        return $html;
     }
 
     /**

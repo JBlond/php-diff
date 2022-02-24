@@ -188,3 +188,11 @@ a, a:visited {
 .DifferencesMerged th.ChangeReplace {
     background-image: linear-gradient(-45deg, #CCCCCC 0%, #FFDD88 100%);
 }
+
+.collapsible {
+    cursor: pointer;
+}
+
+.collapsible.closed{
+    display: none;
+}

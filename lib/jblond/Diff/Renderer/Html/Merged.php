@@ -99,9 +99,8 @@ HTML;
      *
      * @return string HTML code representing table rows showing text which is 'Out Of Context'
      */
-    public function generateLinesOutOfContext($change): string
+    public function generateLinesOutOfContext(array $changes): string
     {
-        $marker      = '&hellip;';
         $headerClass = '';
 
         if ($this->lastDeleted !== null) {
@@ -110,12 +109,32 @@ HTML;
 
         $this->lastDeleted = null;
 
-        return <<<HTML
-<tr>
-    <th class="$headerClass" title="$this->lastDeleted">$marker</th>
+        $html = <<<HTML
+<tr id="{$changes['base']['offset']}" class="collapsible">
+    <th class="$headerClass" title="$this->lastDeleted">&#9654;</th>
     <td class="Skipped">&hellip;</td>
 </tr>
 HTML;
+
+        foreach ($changes['base']['lines'] as $lineNo => $line) {
+            $fromLine    = $changes['base']['offset'] + $lineNo + 1 + $this->lineOffset;
+            $entity      = $lineNo == array_key_last($changes['base']['lines']) ? '&#9650;' : '&#9660;';
+            $headerClass = '';
+
+            if (!$lineNo && $this->lastDeleted !== null) {
+                $headerClass = 'ChangeDelete';
+            }
+
+            $html              .= <<<HTML
+<tr class="collapsible closed {$changes['base']['offset']}">
+    <th class="$headerClass" title="$this->lastDeleted">$entity$fromLine</th>
+    <td>$line</td>
+</tr>
+HTML;
+            $this->lastDeleted = null;
+        }
+
+        return $html;
     }
 
     /**
@@ -248,13 +267,13 @@ HTML;
         }
 
         // More or less lines at version 2. Block of version 1 is replaced by block of version 2.
-        $title       = '';
+        $title = '';
 
         foreach ($changes['changed']['lines'] as $lineNo => $line) {
             $toLine = $changes['changed']['offset'] + $lineNo + 1;
 
             if (!$lineNo) {
-                $title       = "Lines replaced at {$this->options['title1']}:\n";
+                $title = "Lines replaced at {$this->options['title1']}:\n";
                 foreach ($changes['base']['lines'] as $baseLineNo => $baseLine) {
                     $title .= $changes['base']['offset'] + $baseLineNo + 1 . ": $baseLine\n";
                 }

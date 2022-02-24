@@ -38,19 +38,6 @@ $rendererOptions = [
     <meta charset="utf-8"/>
     <title>PHP LibDiff - Examples</title>
     <link rel="stylesheet" type="text/css" href="styles.css"/>
-    <script>
-        function changeCSS(cssFile, cssLinkIndex) {
-
-            const oldLink = document.getElementsByTagName('link').item(cssLinkIndex);
-
-            const newLink = document.createElement('link');
-            newLink.setAttribute('rel', 'stylesheet');
-            newLink.setAttribute('type', 'text/css');
-            newLink.setAttribute('href', cssFile);
-
-            document.getElementsByTagName('head').item(0).replaceChild(newLink, oldLink);
-        }
-    </script>
 </head>
 <body>
 <h1>PHP LibDiff - Examples</h1>
@@ -119,5 +106,7 @@ $renderer = new Context();
 echo $diff->isIdentical() ?
     'No differences found.' : '<pre>' . htmlspecialchars($diff->render($renderer)) . '</pre>';
 ?>
+<script src="js/docready.js"></script>
+<script src="js/example.js"></script>
 </body>
 </html>

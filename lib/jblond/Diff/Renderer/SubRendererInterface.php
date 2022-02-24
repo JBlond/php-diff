@@ -65,9 +65,11 @@ interface SubRendererInterface
     /**
      * Generate a string representation of lines that are "Out Of Context" for the diff view.
      *
+     * @param   array  $changes  Contains the op-codes about the changes between two blocks of text.
+     *
      * @return string Representation of 'Out Of Context' lines.
      */
-    public function generateLinesOutOfContext($change): string;
+    public function generateLinesOutOfContext(array $changes): string;
 
     /**
      * Generate a string representation of lines with ignored differences between both versions.

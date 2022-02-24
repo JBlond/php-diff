@@ -47,7 +47,7 @@ pre {
 }
 
 .Differences .Skipped {
-    background: #F7F7F7;
+    background: #F5F5F5;
     display:    block;
 }
 
@@ -164,4 +164,12 @@ pre {
 
 .DifferencesMerged th.ChangeReplace {
     background-image: linear-gradient(-45deg, #CCCCCC 0%, #FFDD88 100%);
+}
+
+.collapsible {
+    cursor: pointer;
+}
+
+.collapsible.closed{
+    display: none;
 }
