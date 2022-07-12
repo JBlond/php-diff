@@ -20,7 +20,6 @@ use jblond\Diff\Renderer\MainRendererAbstract;
  */
 class UnifiedCli extends MainRendererAbstract
 {
-
     /**
      * @var CliColors
      */

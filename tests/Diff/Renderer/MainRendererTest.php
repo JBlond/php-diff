@@ -33,7 +33,6 @@ use ReflectionException;
  */
 class MainRendererTest extends TestCase
 {
-
     /**
      * @var string[] Defines the main renderer options.
      */

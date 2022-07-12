@@ -19,7 +19,6 @@ use PHPUnit\Framework\TestCase;
  */
 class SimilarityTest extends TestCase
 {
-
     /**
      * Test the similarity ratio between two sequences with different methods.
      */
