@@ -27,7 +27,7 @@ class TextRenderersTest extends TestCase
     /**
      * @var bool Store the renderer's output in a file, when set to true.
      */
-    private $genOutputFiles = false;
+    protected $genOutputFiles = false;
 
     /**
      * TextRenderersTest constructor.
