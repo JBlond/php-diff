@@ -9,7 +9,6 @@ use InvalidArgumentException;
  */
 class File
 {
-
     /** @var string $file */
     protected $file;
 
@@ -19,7 +18,7 @@ class File
     public function __construct(string $file)
     {
         if (!file_exists($file)) {
-            throw new InvalidArgumentException;
+            throw new InvalidArgumentException();
         }
         $this->file = $file;
     }

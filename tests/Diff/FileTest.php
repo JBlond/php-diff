@@ -11,7 +11,6 @@ use PHPUnit\Framework\TestCase;
  */
 class FileTest extends TestCase
 {
-
     /**
      * Test the type of EOF
      */
@@ -105,7 +104,7 @@ class FileTest extends TestCase
     /**
      * Test if the file exists
      */
-    public function test__construct()
+    public function testConstruct()
     {
         $this->expectException(InvalidArgumentException::class);
         $file = new File('foo.txt');
