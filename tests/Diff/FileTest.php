@@ -43,6 +43,13 @@ class FileTest extends TestCase
             'EOL type is Windows (CRLF)',
             $windows->getEOLType()
         );
+
+        $a = new File();
+        $a->setFile('tests/resources/a.txt');
+        $this->assertEquals(
+            'EOL type is Unix (LF)',
+            $a->getEOLType()
+        );
     }
 
     /**
@@ -76,6 +83,20 @@ class FileTest extends TestCase
         $this->assertEquals(
             true,
             $windows->hasNewLineAtTheEnd()
+        );
+
+        $a = new File();
+        $a->setFile('tests/resources/a.txt');
+        $this->assertEquals(
+            true,
+            $a->hasNewLineAtTheEnd()
+        );
+
+        $b = new File();
+        $b->setFile('tests/resources/b.txt');
+        $this->assertEquals(
+            true,
+            $b->hasNewLineAtTheEnd()
         );
     }
 

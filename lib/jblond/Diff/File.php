@@ -9,7 +9,7 @@ use InvalidArgumentException;
  */
 class File
 {
-    /** @var string $file */
+    /** @var array $file */
     protected $file;
 
 
@@ -27,7 +27,7 @@ class File
         if (!file_exists($file)) {
             throw new InvalidArgumentException();
         }
-        $this->file = $file;
+        $this->file = file($file);
     }
 
     /**
@@ -36,7 +36,7 @@ class File
      */
     public function getLastLine()
     {
-        $lines = file($this->file);
+        $lines = $this->file;
         return end($lines);
     }
 
