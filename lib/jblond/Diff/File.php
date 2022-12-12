@@ -12,11 +12,18 @@ class File
     /** @var string $file */
     protected $file;
 
+
     /**
-     * @param string $file
+     * Add data
+     * @param string|array $file
+     * @return void
      */
-    public function __construct(string $file)
+    public function setFile($file): void
     {
+        if (is_array($file)) {
+            $this->file = $file;
+            return;
+        }
         if (!file_exists($file)) {
             throw new InvalidArgumentException();
         }
@@ -24,6 +31,7 @@ class File
     }
 
     /**
+     * return the last line from the file array
      * @return false|mixed|string
      */
     public function getLastLine()
@@ -33,6 +41,7 @@ class File
     }
 
     /**
+     * Bool return if the file has a new line at the end
      * @return bool
      */
     public function hasNewLineAtTheEnd(): bool
@@ -53,6 +62,7 @@ class File
     }
 
     /**
+     * Return the File Ending / EOL / EOF Type
      * @return string
      */
     public function getEOLType(): string
