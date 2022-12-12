@@ -13,7 +13,7 @@ $changelogLabels = ['Add', 'Cut', 'Fix', 'Bump', 'Document','Optimize'];
 
 
 $changeLog = new MarkDown();
-$changeLog->setUrl('commit', 'https://github.com/JBlond/php-diff/commit/{hash}');
+$changeLog->setUrl('commit', 'https://github.com/JBlond/php-diff/commit/{commit}');
 $changeLog->setUrl('issue', 'https://github.com/JBlond/php-diff/issues/{issue}');
 
 try {
