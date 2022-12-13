@@ -337,24 +337,24 @@ class SequenceMatcher implements ConstantsInterface
             return $this->opCodes;
         }
 
-        $i             = 0;
-        $j             = 0;
+        $iFrom             = 0;
+        $jFrom             = 0;
         $this->opCodes = [];
 
         $blocks = $this->getMatchingBlocks();
-        foreach ($blocks as [$ai, $bj, $size]) {
+        foreach ($blocks as [$blockA, $blockB, $size]) {
             $tag = '';
-            if ($i < $ai && $j < $bj) {
+            if ($iFrom < $blockA && $jFrom < $blockB) {
                 $tag = 'replace';
-            } elseif ($i < $ai) {
+            } elseif ($iFrom < $blockA) {
                 $tag = 'delete';
-            } elseif ($j < $bj) {
+            } elseif ($jFrom < $blockB) {
                 $tag = 'insert';
             }
 
             if ($this->options['ignoreLines']) {
-                $slice1 = array_slice($this->old, $i, $ai - $i);
-                $slice2 = array_slice($this->new, $j, $bj - $j);
+                $slice1 = array_slice($this->old, $iFrom, $blockA - $iFrom);
+                $slice2 = array_slice($this->new, $jFrom, $blockB - $jFrom);
 
                 if ($this->options['ignoreLines'] == 2) {
                     array_walk(
@@ -382,23 +382,23 @@ class SequenceMatcher implements ConstantsInterface
             if ($tag) {
                 $this->opCodes[] = [
                     $tag,
-                    $i,
-                    $ai,
-                    $j,
-                    $bj,
+                    $iFrom,
+                    $blockA,
+                    $jFrom,
+                    $blockB,
                 ];
             }
 
-            $i = $ai + $size;
-            $j = $bj + $size;
+            $iFrom = $blockA + $size;
+            $jFrom = $blockB + $size;
 
             if ($size) {
                 $this->opCodes[] = [
                     'equal',
-                    $ai,
-                    $i,
-                    $bj,
-                    $j,
+                    $blockA,
+                    $iFrom,
+                    $blockB,
+                    $jFrom,
                 ];
             }
         }
@@ -462,34 +462,34 @@ class SequenceMatcher implements ConstantsInterface
 
         sort($matchingBlocks);
 
-        $i1          = 0;
-        $j1          = 0;
-        $k1          = 0;
+        $iMatchingBlock          = 0;
+        $jMatchingBlock          = 0;
+        $kMatchingBlock          = 0;
         $nonAdjacent = [];
         foreach ($matchingBlocks as [$list4, $list5, $list6]) {
-            if ($i1 + $k1 == $list4 && $j1 + $k1 == $list5) {
-                $k1 += $list6;
+            if ($iMatchingBlock + $kMatchingBlock == $list4 && $jMatchingBlock + $kMatchingBlock == $list5) {
+                $kMatchingBlock += $list6;
                 continue;
             }
-            if ($k1) {
+            if ($kMatchingBlock) {
                 $nonAdjacent[] = [
-                    $i1,
-                    $j1,
-                    $k1,
+                    $iMatchingBlock,
+                    $jMatchingBlock,
+                    $kMatchingBlock,
                 ];
             }
 
-            $i1 = $list4;
-            $j1 = $list5;
-            $k1 = $list6;
+            $iMatchingBlock = $list4;
+            $jMatchingBlock = $list5;
+            $kMatchingBlock = $list6;
         }
 
 
-        if ($k1) {
+        if ($kMatchingBlock) {
             $nonAdjacent[] = [
-                $i1,
-                $j1,
-                $k1,
+                $iMatchingBlock,
+                $jMatchingBlock,
+                $kMatchingBlock,
             ];
         }
 
@@ -547,12 +547,12 @@ class SequenceMatcher implements ConstantsInterface
                     break;
                 }
 
-                $k            = ($j2Len[$j - 1] ?? 0) + 1;
-                $newJ2Len[$j] = $k;
-                if ($k > $bestSize) {
-                    $bestI    = $i - $k + 1;
-                    $bestJ    = $j - $k + 1;
-                    $bestSize = $k;
+                $kRatio            = ($j2Len[$j - 1] ?? 0) + 1;
+                $newJ2Len[$j] = $kRatio;
+                if ($kRatio > $bestSize) {
+                    $bestI    = $i - $kRatio + 1;
+                    $bestJ    = $j - $kRatio + 1;
+                    $bestSize = $kRatio;
                 }
             }
 

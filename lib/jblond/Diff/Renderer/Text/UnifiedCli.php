@@ -71,26 +71,26 @@ class UnifiedCli extends MainRendererAbstract
                 continue;
             }
             $lastItem = array_key_last($group);
-            $i1       = $group[0][1];
-            $i2       = $group[$lastItem][2];
-            $j1       = $group[0][3];
-            $j2       = $group[$lastItem][4];
+            $iGroup1       = $group[0][1];
+            $iGroup2       = $group[$lastItem][2];
+            $jGroup1       = $group[0][3];
+            $jGroup2       = $group[$lastItem][4];
 
-            if ($i1 == 0 && $i2 == 0) {
-                $i1 = -1;
-                $i2 = -1;
+            if ($iGroup1 == 0 && $iGroup2 == 0) {
+                $iGroup1 = -1;
+                $iGroup2 = -1;
             }
 
             $diff .= $this->colorizeString(
-                '@@ -' . ($i1 + 1) . ',' . ($i2 - $i1) . ' +' . ($j1 + 1) . ',' . ($j2 - $j1) . " @@\n",
+                '@@ -' . ($iGroup1 + 1) . ',' . ($iGroup2 - $iGroup1) . ' +' . ($jGroup1 + 1) . ',' . ($jGroup2 - $jGroup1) . " @@\n",
                 'purple'
             );
 
-            foreach ($group as [$tag, $i1, $i2, $j1, $j2]) {
+            foreach ($group as [$tag, $iGroup1, $iGroup2, $jGroup1, $jGroup2]) {
                 if ($tag == 'equal') {
                     $string = implode(
                         "\n ",
-                        $this->diff->getArrayRange($this->diff->getVersion1(), $i1, $i2)
+                        $this->diff->getArrayRange($this->diff->getVersion1(), $iGroup1, $iGroup2)
                     );
                     $diff   .= $this->colorizeString(' ' . $string . "\n", 'grey');
                     continue;
@@ -98,14 +98,14 @@ class UnifiedCli extends MainRendererAbstract
                 if ($tag == 'replace' || $tag == 'delete') {
                     $string = implode(
                         "\n- ",
-                        $this->diff->getArrayRange($this->diff->getVersion1(), $i1, $i2)
+                        $this->diff->getArrayRange($this->diff->getVersion1(), $iGroup1, $iGroup2)
                     );
                     $diff   .= $this->colorizeString('-' . $string . "\n", 'light_red');
                 }
                 if ($tag == 'replace' || $tag == 'insert') {
                     $string = implode(
                         "\n+",
-                        $this->diff->getArrayRange($this->diff->getVersion2(), $j1, $j2)
+                        $this->diff->getArrayRange($this->diff->getVersion2(), $jGroup1, $jGroup2)
                     );
                     $diff   .= $this->colorizeString('+' . $string . "\n", 'light_green');
                 }
