@@ -13,8 +13,9 @@ $changelogLabels = ['Add', 'Cut', 'Fix', 'Bump', 'Document','Optimize'];
 
 
 $changeLog = new MarkDown();
-$changeLog->commitUrl = 'https://github.com/JBlond/php-diff/commit/{hash}';
-$changeLog->issueUrl  = 'https://github.com/JBlond/php-diff/issues/{issue}';
+$changeLog->setUrl('commit', 'https://github.com/JBlond/php-diff/commit/{commit}');
+$changeLog->setUrl('issue', 'https://github.com/JBlond/php-diff/issues/{issue}');
+
 try {
     $changeLog->setOptions($changelogOptions);
 } catch (Exception $exception) {
@@ -26,4 +27,4 @@ try {
 } catch (Exception $exception) {
     echo $exception->getMessage();
 }
-$changeLog->save('changelog.md');
+file_put_contents('changelog.md', $changeLog->get());

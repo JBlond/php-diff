@@ -1,6 +1,6 @@
 # PHP Diff Class
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/db5f8d57b1234502aeb852afc87e0dfe)](https://www.codacy.com/app/leet31337/php-diff)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/db5f8d57b1234502aeb852afc87e0dfe)](https://app.codacy.com/gh/JBlond/php-diff/dashboard)
 [![Latest Version](https://img.shields.io/github/release/JBlond/php-diff.svg?style=flat-square&label=Release)](https://github.com/JBlond/php-diff/releases)
 [![Packagist Installs](https://badgen.net/packagist/dt/JBlond/php-diff)](https://packagist.org/packages/jblond/php-diff)
 
@@ -136,7 +136,7 @@ You can also fork this repository and open a PR.
 
 Xiphe has build a jQuery plugin with that you can merge the compared files. Have
 a look
-at [jQuery-Merge-for-php-diff](https://github.com/Xiphe/jQuery-Merge-for-php-diff)
+at [jQuery-Merge-for-php-diff](https://github.com/DigiLive/jQuery-Merge-for-php-diff)
 .
 
 ## Todo
