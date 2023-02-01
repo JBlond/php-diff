@@ -22,6 +22,28 @@ use jblond\Diff\Renderer\MainRendererAbstract;
  */
 class Json extends MainRendererAbstract
 {
+
+    /**
+     * @var array   Associative array containing the default options available for this renderer and their default
+     *              value.
+     */
+    private $subOptions = [
+        'json' => JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE
+    ];
+
+    /**
+     * InlineCli constructor.
+     *
+     * @param   array  $options  Custom defined options for the InlineCli diff renderer.
+     *
+     * @see Json::$subOptions
+     */
+    public function __construct(array $options = [])
+    {
+        parent::__construct($this->subOptions);
+        $this->setOptions($options);
+    }
+
     /**
      * @return false|string
      */
@@ -33,7 +55,7 @@ class Json extends MainRendererAbstract
         foreach ($opCodes as $key => $group) {
             $return[] = $this->toArray($group);
         }
-        return json_encode($return, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        return json_encode($return, $this->options['json']);
     }
 
     /**
