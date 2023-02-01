@@ -22,7 +22,6 @@ use jblond\Diff\Renderer\MainRendererAbstract;
  */
 class Json extends MainRendererAbstract
 {
-
     /**
      * @var array   Associative array containing the default options available for this renderer and their default
      *              value.
