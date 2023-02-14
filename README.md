@@ -15,6 +15,7 @@ standard formats including:
 * Side by Side HTML
 * Unified HTML
 * Unified Commandline colored output
+* JSON
 
 The logic behind the core of the diff engine (ie, the sequence matcher) is
 primarily based on the Python difflib package. The reason for doing so is
@@ -147,9 +148,9 @@ at [jQuery-Merge-for-php-diff](https://github.com/DigiLive/jQuery-Merge-for-php-
 
 Contributors since I forked the repo.
 
-* maxxer
-* Creris
-* jfcherng
+* [maxxer](https://github.com/maxxer)
+* [Creris](https://github.com/Creris)
+* [jfcherng](https://github.com/jfcherng)
 * [DigiLive](https://github.com/DigiLive)
 
 ### License (BSD License)

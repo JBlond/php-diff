@@ -39,6 +39,7 @@
         "digilive/git-changelog": "^2"
     },
     "suggest": {
+        "ext-json": "*",
         "jblond/php-cli": "^1.0"
     },
     "autoload": {

@@ -130,4 +130,23 @@ class TextRenderersTest extends TestCase
         }
         $this->assertStringEqualsFile('tests/resources/textInlineCli.txt', $result);
     }
+
+    /**
+     * Test the output of the JSON text renderer
+     *
+     * @covers \jblond\Diff\Renderer\Text\Json
+     */
+    public function testJson(): void
+    {
+        $diff = new Diff(
+            file_get_contents('tests/resources/a.txt'),
+            file_get_contents('tests/resources/b.txt')
+        );
+        $renderer = new Diff\Renderer\Text\Json();
+        $result   = $diff->render($renderer);
+        if ($this->genOutputFiles) {
+            file_put_contents('results.json', $result);
+        }
+        $this->assertStringEqualsFile('tests/resources/textResult.json', $result);
+    }
 }

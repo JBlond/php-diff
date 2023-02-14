@@ -50,7 +50,8 @@ class Unified extends MainRendererAbstract
                 $iGroup2 = -1;
             }
 
-            $diff .= '@@ -' . ($iGroup1 + 1) . ',' . ($iGroup2 - $iGroup1) . ' +' . ($jGroup1 + 1) . ',' . ($jGroup2 - $jGroup1) . " @@\n";
+            $diff .= '@@ -' . ($iGroup1 + 1) . ',' . ($iGroup2 - $iGroup1) . ' +' . ($jGroup1 + 1)
+                . ',' . ($jGroup2 - $jGroup1) . " @@\n";
             foreach ($group as [$tag, $iGroup1, $iGroup2, $jGroup1, $jGroup2]) {
                 if ($tag == 'equal') {
                     $diff .= ' ' .
