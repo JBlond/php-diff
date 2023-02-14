@@ -82,7 +82,8 @@ class UnifiedCli extends MainRendererAbstract
             }
 
             $diff .= $this->colorizeString(
-                '@@ -' . ($iGroup1 + 1) . ',' . ($iGroup2 - $iGroup1) . ' +' . ($jGroup1 + 1) . ',' . ($jGroup2 - $jGroup1) . " @@\n",
+                '@@ -' . ($iGroup1 + 1) . ',' . ($iGroup2 - $iGroup1) . ' +' . ($jGroup1 + 1)
+                . ',' . ($jGroup2 - $jGroup1) . " @@\n",
                 'purple'
             );
 
