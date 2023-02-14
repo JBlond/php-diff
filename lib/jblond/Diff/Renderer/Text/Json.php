@@ -2,10 +2,11 @@
 
 namespace jblond\Diff\Renderer\Text;
 
+use RuntimeException;
 use jblond\Diff\Renderer\MainRendererAbstract;
 
 /**
- * Unified diff generator for PHP DiffLib.
+ * json diff generator for PHP DiffLib.
  *
  * PHP version 7.3 or greater
  *
@@ -27,23 +28,28 @@ class Json extends MainRendererAbstract
      *              value.
      */
     private $subOptions = [
-        'json' => JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE
+        'json' => JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR
     ];
 
     /**
-     * InlineCli constructor.
+     * json constructor.
      *
-     * @param   array  $options  Custom defined options for the InlineCli diff renderer.
+     * @param array $options  Custom defined options for the json diff renderer.
      *
      * @see Json::$subOptions
      */
     public function __construct(array $options = [])
     {
+        if (!extension_loaded('json')) {
+            throw new RuntimeException('json extension is not available');
+        }
         parent::__construct($this->subOptions);
         $this->setOptions($options);
     }
 
     /**
+     * @inheritDoc
+     *
      * @return false|string
      */
     public function render()
@@ -51,13 +57,14 @@ class Json extends MainRendererAbstract
         $return = [];
         $opCodes = $this->diff->getGroupedOpCodes();
 
-        foreach ($opCodes as $key => $group) {
+        foreach ($opCodes as $group) {
             $return[] = $this->toArray($group);
         }
         return json_encode($return, $this->options['json']);
     }
 
     /**
+     * Convert the
      * @param $group
      * @return array
      */
