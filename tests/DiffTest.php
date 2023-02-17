@@ -143,20 +143,35 @@ class DiffTest extends TestCase
     {
         $this->assertEquals(
             [5, 6],
-            $this->diff->getArrayRange([2,5,6],1, 3)
+            $this->diff->getArrayRange(
+                [2, 5, 6],
+                1,
+                3
+            )
         );
 
         $this->assertEquals(
             [2, 5, 6],
-            $this->diff->getArrayRange([2,5,6],0, 3)
+            $this->diff->getArrayRange(
+                [2, 5, 6],
+                0,
+                3
+            )
         );
 
         $this->assertEquals(
             [2, 5, 6],
-            $this->diff->getArrayRange([2,5,6],0, null)
+            $this->diff->getArrayRange(
+                [2, 5, 6],
+                0,
+                null
+            )
         );
 
         $this->expectException(OutOfRangeException::class);
-        $this->diff->getArrayRange([1,5],5);
+        $this->diff->getArrayRange(
+            [1, 5],
+            5
+        );
     }
 }
