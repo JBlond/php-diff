@@ -136,7 +136,7 @@ class SequenceMatcher implements ConstantsInterface
     public function setSeq1($version1): void
     {
         if (!is_array($version1)) {
-            $version1 = str_split($version1);
+            $version1 = mb_str_split($version1);
         }
         if ($version1 == $this->old) {
             return;
@@ -159,7 +159,7 @@ class SequenceMatcher implements ConstantsInterface
     public function setSeq2($version2): void
     {
         if (!is_array($version2)) {
-            $version2 = str_split($version2);
+            $version2 = mb_str_split($version2);
         }
         if ($version2 == $this->new) {
             return;
