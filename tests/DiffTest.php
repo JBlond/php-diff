@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests;
 
 use InvalidArgumentException;
@@ -9,11 +11,20 @@ use OutOfRangeException;
 use PHPUnit\Framework\TestCase;
 
 /**
+ * Class DiffTest
  *
+ *
+ * @package         Tests\Diff
+ * @author          Mario Brandt <leet31337@web.de>
+ * @copyright   (c) 2023 Mario Brandt
+ * @license         New BSD License http://www.opensource.org/licenses/bsd-license.php
+ * @version         2.4.0
+ * @link            https://github.com/JBlond/php-diff
  */
 class DiffTest extends TestCase
 {
     /**
+     * Store the Diff object
      * @var Diff
      */
     protected $diff;
@@ -21,9 +32,9 @@ class DiffTest extends TestCase
     /**
      * @param string|null $name
      * @param array $data
-     * @param $dataName
+     * @param string $dataName
      */
-    public function __construct(?string $name = null, array $data = [], $dataName = '')
+    public function __construct(?string $name = null, array $data = [], string $dataName = '')
     {
         parent::__construct($name, $data, $dataName);
         $this->diff = new Diff(
@@ -33,9 +44,10 @@ class DiffTest extends TestCase
     }
 
     /**
+     * Test the grouped OP codes
      * @return void
      */
-    public function testGetGroupedOpCodes()
+    public function testGetGroupedOpCodes(): void
     {
         $this->assertEquals(
             [
@@ -69,23 +81,45 @@ class DiffTest extends TestCase
         );
     }
 
-    public function testGetVersion1()
+    /**
+     * Test the getter function
+     * @return void
+     */
+    public function testGetVersion1(): void
     {
+        $compareData = file('tests/resources/a.txt');
+        $compareData = array_map(static function ($value) {
+            return str_replace("\n", '', $value);
+        }, $compareData);
+        $compareData[] = "";
         $this->assertEquals(
-            file('tests/resources/a.txt'),
+            $compareData,
             $this->diff->getVersion1()
         );
     }
 
-    public function testGetVersion2()
+    /**
+     * Test the getter function
+     * @return void
+     */
+    public function testGetVersion2(): void
     {
+        $compareData = file('tests/resources/b.txt');
+        $compareData = array_map(static function ($value) {
+            return str_replace("\n", '', $value);
+        }, $compareData);
+        $compareData[] = "";
         $this->assertEquals(
-            file('tests/resources/b.txt'),
+            $compareData,
             $this->diff->getVersion2()
         );
     }
 
-    public function testGetArgumentType()
+    /**
+     * Test the kind of variable.
+     * @return void
+     */
+    public function testGetArgumentType(): void
     {
         $this->assertEquals(
             [
@@ -101,16 +135,23 @@ class DiffTest extends TestCase
         $this->diff->getArgumentType(123);
     }
 
-    public function testRender()
+    /**
+     * Test the rendering setter
+     * @return void
+     */
+    public function testRender(): void
     {
         $renderer = new SideBySide();
-        $this->assertEquals(
-            file_get_contents('tests/resources/htmlSideBySide.txt'),
-            $this->diff->render($renderer)
+        $this->assertStringEqualsFile(
+            'tests/resources/htmlSideBySide.txt', $this->diff->render($renderer)
         );
     }
 
-    public function testGetSimilarity()
+    /**
+     * Test the similarity ratio of the two sequences
+     * @return void
+     */
+    public function testGetSimilarity(): void
     {
         $this->assertEquals(
             0.7272727272727273,
@@ -118,7 +159,10 @@ class DiffTest extends TestCase
         );
     }
 
-    public function testIsIdentical()
+    /**
+     * @return void
+     */
+    public function testIsIdentical(): void
     {
         $this->assertEquals(
             false,
@@ -126,7 +170,10 @@ class DiffTest extends TestCase
         );
     }
 
-    public function testGetStatistics()
+    /**
+     * @return void
+     */
+    public function testGetStatistics(): void
     {
         $this->assertEquals(
             [
@@ -139,7 +186,10 @@ class DiffTest extends TestCase
         );
     }
 
-    public function testGetArrayRange()
+    /**
+     * @return void
+     */
+    public function testGetArrayRange(): void
     {
         $this->assertEquals(
             [5, 6],
