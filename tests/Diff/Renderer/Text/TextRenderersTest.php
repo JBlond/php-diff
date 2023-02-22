@@ -64,6 +64,23 @@ class TextRenderersTest extends TestCase
     }
 
     /**
+     * Test the output of the text-context renderer without any change.
+     *
+     * @covers \jblond\Diff\Renderer\MainRenderer
+     */
+    public function testContextNoChanges(): void
+    {
+        $diff = new Diff(
+            file_get_contents('tests/resources/a.txt'),
+            file_get_contents('tests/resources/a.txt')
+        );
+
+        $renderer = new Diff\Renderer\Text\InlineCli();
+        $result   = $diff->render($renderer);
+        $this->assertEmpty($result);
+    }
+
+    /**
      * Test the output of the text-unified renderer.
      *
      * @covers \jblond\Diff\Renderer\Text\Unified
