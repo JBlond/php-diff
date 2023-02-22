@@ -105,6 +105,26 @@ class TextRenderersTest extends TestCase
     }
 
     /**
+     * Test the output of the CLI Unified renderer with colors.
+     *
+     * @covers \jblond\Diff\Renderer\Text\UnifiedCli
+     */
+    public function testUnifiedCliColorOption(): void
+    {
+        $diff = new Diff(
+            file_get_contents('tests/resources/a.txt'),
+            file_get_contents('tests/resources/b.txt')
+        );
+
+        $renderer = new Diff\Renderer\Text\UnifiedCli(['cliColor' => true]);
+        $result   = $diff->render($renderer);
+        if ($this->genOutputFiles) {
+            file_put_contents('textUnifiedCliColor.txt', $result);
+        }
+        $this->assertStringEqualsFile('tests/resources/textUnifiedCliColor.txt', $result);
+    }
+
+    /**
      * Test the output of the CLI text-inline renderer.
      *
      * @covers \jblond\Diff\Renderer\Text\InlineCli
