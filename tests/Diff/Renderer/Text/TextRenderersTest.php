@@ -32,13 +32,12 @@ class TextRenderersTest extends TestCase
     /**
      * TextRenderersTest constructor.
      *
-     * @param   null    $name
-     * @param   array   $data
-     * @param   string  $dataName
+     * @param   ?string $name
+     * @param    array  $data
+     * @param    string $dataName
      */
-    public function __construct($name = null, array $data = [], $dataName = '')
+    public function __construct($name = null, array $data = [], string $dataName = '')
     {
-        //$this->genOutputFiles = true;
         parent::__construct($name, $data, $dataName);
     }
 
