@@ -143,7 +143,8 @@ class DiffTest extends TestCase
     {
         $renderer = new SideBySide();
         $this->assertStringEqualsFile(
-            'tests/resources/htmlSideBySide.txt', $this->diff->render($renderer)
+            'tests/resources/htmlSideBySide.txt',
+            $this->diff->render($renderer)
         );
     }
 
