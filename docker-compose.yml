@@ -1,0 +1,21 @@
+version: '3.9'
+# For all options see
+# https://dockerfile.readthedocs.io/en/latest/content/DockerImages/dockerfiles/php-nginx-dev.html
+services:
+    php:
+        image: webdevops/php-nginx-dev:8.2
+        container_name: diff
+        working_dir: /app
+        environment:
+            - WEB_DOCUMENT_ROOT=/app/example
+            - WEB_DOCUMENT_INDEX=example.php
+            - PHP_DISPLAY_ERRORS=1
+            - PHP_MEMORY_LIMIT=2048M
+            - PHP_MAX_EXECUTION_TIME=-1
+            - PHP_DATE_TIMEZONE = Europe/Berlin
+            - XDEBUG_IDE_KEY=PHPSTORM
+        ports:
+            - "88:80"
+            - "9000:9000"
+        volumes:
+            - ./:/app:rw,cached
