@@ -1,4 +1,3 @@
-version: '3.9'
 # For all options see
 # https://dockerfile.readthedocs.io/en/latest/content/DockerImages/dockerfiles/php-nginx-dev.html
 services:
