@@ -27,17 +27,20 @@ class File
         if (!file_exists($file)) {
             throw new InvalidArgumentException();
         }
-        $this->file = file($file);
+        $file = file($file);
+        if ($file === false) {
+            throw new InvalidArgumentException();
+        }
+        $this->file = $file;
     }
 
     /**
      * return the last line from the file array
-     * @return false|mixed|string
+     * @return false|mixed
      */
     public function getLastLine()
     {
-        $lines = $this->file;
-        return end($lines);
+        return end($this->file);
     }
 
     /**
@@ -46,19 +49,7 @@ class File
      */
     public function hasNewLineAtTheEnd(): bool
     {
-        $lastLine = $this->getLastLine();
-        if (strpos($lastLine, "\r\n") !== false) {
-            return true;
-        }
-
-        if (strpos($lastLine, "\r") !== false) {
-            return true;
-        }
-
-        if (strpos($lastLine, "\n") !== false) {
-            return true;
-        }
-        return false;
+        return (bool)preg_match('(\r\n|\r|\n)', $this->getLastLine());
     }
 
     /**
@@ -67,18 +58,16 @@ class File
      */
     public function getEOLType(): string
     {
-        $lastLine = $this->getLastLine();
-        if (strpos($lastLine, "\r\n") !== false) {
-            return "EOL type is Windows (CRLF)";
+        preg_match('(\r\n|\r|\n)', $this->getLastLine(), $matches);
+        switch ($matches[0] ?? '') {
+            case "\n":
+                return 'EOL type is Unix (LF)';
+            case "\r":
+                return 'EOL type is Mac (CR)';
+            case "\r\n":
+                return 'EOL type is Windows (CRLF)';
+            default:
+                return '\ No newline at end of file';
         }
-
-        if (strpos($lastLine, "\r") !== false) {
-            return "EOL type is Mac (CR)";
-        }
-
-        if (strpos($lastLine, "\n") !== false) {
-            return "EOL type is Unix (LF)";
-        }
-        return "\ No newline at end of file";
     }
 }
