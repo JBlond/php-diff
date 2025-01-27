@@ -1,0 +1,319 @@
+[
+    [
+        {
+            "tag": "equal",
+            "old": {
+                "offset": 0,
+                "lines": [
+                    "<html>",
+                    "    <head>",
+                    "        <meta http-equiv=\"Content-type\" content=\"text\/html; charset=utf-8\"\/>"
+                ]
+            },
+            "new": {
+                "offset": 0,
+                "lines": [
+                    "<html>",
+                    "    <head>",
+                    "        <meta http-equiv=\"Content-type\" content=\"text\/html; charset=utf-8\"\/>"
+                ]
+            }
+        },
+        {
+            "tag": "replace",
+            "old": {
+                "offset": 3,
+                "lines": [
+                    "        <title>Hello World!<\/title>"
+                ]
+            },
+            "new": {
+                "offset": 3,
+                "lines": [
+                    "        <title>Hello You!<\/title>"
+                ]
+            }
+        },
+        {
+            "tag": "equal",
+            "old": {
+                "offset": 4,
+                "lines": [
+                    "    <\/head>",
+                    "    <body>",
+                    "        <h1>This is demo content to show features of the php-diff package.<\/h1>"
+                ]
+            },
+            "new": {
+                "offset": 4,
+                "lines": [
+                    "    <\/head>",
+                    "    <body>",
+                    "        <h1>This is demo content to show features of the php-diff package.<\/h1>"
+                ]
+            }
+        },
+        {
+            "tag": "delete",
+            "old": {
+                "offset": 7,
+                "lines": [
+                    "        <h2>This line is removed from version2.<\/h2>"
+                ]
+            },
+            "new": {
+                "offset": 7,
+                "lines": []
+            }
+        },
+        {
+            "tag": "equal",
+            "old": {
+                "offset": 8,
+                "lines": [
+                    "        <h2>This line is the same for both versions.<\/h2>"
+                ]
+            },
+            "new": {
+                "offset": 7,
+                "lines": [
+                    "        <h2>This line is the same for both versions.<\/h2>"
+                ]
+            }
+        },
+        {
+            "tag": "replace",
+            "old": {
+                "offset": 9,
+                "lines": [
+                    "        <h2>this line has inline differences between both versions.<\/h2>"
+                ]
+            },
+            "new": {
+                "offset": 8,
+                "lines": [
+                    "        <h2>This line has differences between both versions.<\/h2>"
+                ]
+            }
+        },
+        {
+            "tag": "equal",
+            "old": {
+                "offset": 10,
+                "lines": [
+                    "        <h2>This line is the same for both versions.<\/h2>"
+                ]
+            },
+            "new": {
+                "offset": 9,
+                "lines": [
+                    "        <h2>This line is the same for both versions.<\/h2>"
+                ]
+            }
+        },
+        {
+            "tag": "replace",
+            "old": {
+                "offset": 11,
+                "lines": [
+                    "        <h2>This line also has inline differences between both versions.<\/h2>"
+                ]
+            },
+            "new": {
+                "offset": 10,
+                "lines": [
+                    "        <h2>This line also has InLine differences between both versions.<\/h2>"
+                ]
+            }
+        },
+        {
+            "tag": "equal",
+            "old": {
+                "offset": 12,
+                "lines": [
+                    "        <h2>This line is the same for both versions.<\/h2>"
+                ]
+            },
+            "new": {
+                "offset": 11,
+                "lines": [
+                    "        <h2>This line is the same for both versions.<\/h2>"
+                ]
+            }
+        },
+        {
+            "tag": "insert",
+            "old": {
+                "offset": 13,
+                "lines": []
+            },
+            "new": {
+                "offset": 12,
+                "lines": [
+                    "        <h2>This line is added to version2.<\/h2>"
+                ]
+            }
+        },
+        {
+            "tag": "equal",
+            "old": {
+                "offset": 13,
+                "lines": [
+                    "",
+                    "        <p>",
+                    "            It's also compatible with multibyte characters (like Chinese and emoji) as shown below:"
+                ]
+            },
+            "new": {
+                "offset": 13,
+                "lines": [
+                    "",
+                    "        <p>",
+                    "            It's also compatible with multibyte characters (like Chinese and emoji) as shown below:"
+                ]
+            }
+        },
+        {
+            "tag": "replace",
+            "old": {
+                "offset": 16,
+                "lines": [
+                    "            另外我覺得那個評價的白色櫃子有點沒有必要欸。外觀我就不說了 ，怎麼連空間都那麼狹隘。不過倒是從這個地方看出所謂的“改革”",
+                    "            Do you know what \"金槍魚罐頭\" means in Chinese?",
+                    "            🍏🍎🙂"
+                ]
+            },
+            "new": {
+                "offset": 16,
+                "lines": [
+                    "            另外我覺得那個評鑑的白色櫃子有點沒有必要欸。外觀我就不說了 ，怎麼連空間都那麼狹隘。不過倒是從這個地方看出所謂的“改革”",
+                    "            Do you know what \"魚の缶詰\" means in Chinese?",
+                    "            🍎🍏🙂"
+                ]
+            }
+        },
+        {
+            "tag": "equal",
+            "old": {
+                "offset": 19,
+                "lines": [
+                    "        <\/p>",
+                    "",
+                    "        <p>Just some lines to demonstrate the collapsing of a block of lines which are the same in both versions.<\/p>"
+                ]
+            },
+            "new": {
+                "offset": 19,
+                "lines": [
+                    "        <\/p>",
+                    "",
+                    "        <p>Just some lines to demonstrate the collapsing of a block of lines which are the same in both versions.<\/p>"
+                ]
+            }
+        }
+    ],
+    [
+        {
+            "tag": "outOfContext",
+            "old": {
+                "offset": 22,
+                "lines": [
+                    "        <p>Just some lines to demonstrate the collapsing of a block of lines which are the same in both versions.<\/p>",
+                    "        <p>Just some lines to demonstrate the collapsing of a block of lines which are the same in both versions.<\/p>"
+                ]
+            },
+            "new": {
+                "offset": 22,
+                "lines": [
+                    "        <p>Just some lines to demonstrate the collapsing of a block of lines which are the same in both versions.<\/p>",
+                    "        <p>Just some lines to demonstrate the collapsing of a block of lines which are the same in both versions.<\/p>"
+                ]
+            }
+        }
+    ],
+    [
+        {
+            "tag": "equal",
+            "old": {
+                "offset": 24,
+                "lines": [
+                    "        <p>Just some lines to demonstrate the collapsing of a block of lines which are the same in both versions.<\/p>",
+                    "        <p>Just some lines to demonstrate the collapsing of a block of lines which are the same in both versions.<\/p>",
+                    "        <p>Just some lines to demonstrate the collapsing of a block of lines which are the same in both versions.<\/p>"
+                ]
+            },
+            "new": {
+                "offset": 24,
+                "lines": [
+                    "        <p>Just some lines to demonstrate the collapsing of a block of lines which are the same in both versions.<\/p>",
+                    "        <p>Just some lines to demonstrate the collapsing of a block of lines which are the same in both versions.<\/p>",
+                    "        <p>Just some lines to demonstrate the collapsing of a block of lines which are the same in both versions.<\/p>"
+                ]
+            }
+        },
+        {
+            "tag": "replace",
+            "old": {
+                "offset": 27,
+                "lines": [
+                    "\t\t<h2>This line also has inline differences between both versions. It's the whitespace in front.<\/h2>"
+                ]
+            },
+            "new": {
+                "offset": 27,
+                "lines": [
+                    "        <h2>This line also has inline differences between both versions. It's the whitespace in front.<\/h2>"
+                ]
+            }
+        },
+        {
+            "tag": "equal",
+            "old": {
+                "offset": 28,
+                "lines": [
+                    "        <h2>This line is the same for both versions.<\/h2>"
+                ]
+            },
+            "new": {
+                "offset": 28,
+                "lines": [
+                    "        <h2>This line is the same for both versions.<\/h2>"
+                ]
+            }
+        },
+        {
+            "tag": "replace",
+            "old": {
+                "offset": 29,
+                "lines": [
+                    "        <h2>This line also has inline differences between both versions.<\/h2>"
+                ]
+            },
+            "new": {
+                "offset": 29,
+                "lines": [
+                    "        <h2>This line also has inline differences between both versions!<\/h2>"
+                ]
+            }
+        },
+        {
+            "tag": "equal",
+            "old": {
+                "offset": 30,
+                "lines": [
+                    "    <\/body>",
+                    "<\/html>",
+                    ""
+                ]
+            },
+            "new": {
+                "offset": 30,
+                "lines": [
+                    "    <\/body>",
+                    "<\/html>",
+                    ""
+                ]
+            }
+        }
+    ]
+]

@@ -29,7 +29,8 @@
     "require": {
         "php": ">=7.3",
         "ext-mbstring": "*",
-        "ext-pcre": "*"
+        "ext-pcre": "*",
+        "symfony/polyfill-mbstring": "^1"
     },
     "require-dev": {
         "phpunit/phpunit": "^8 || ^9",
@@ -39,6 +40,7 @@
         "digilive/git-changelog": "^2"
     },
     "suggest": {
+        "ext-json": "*",
         "jblond/php-cli": "^1.0"
     },
     "autoload": {
