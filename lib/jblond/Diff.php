@@ -217,11 +217,6 @@ class Diff implements ConstantsInterface
             return $array;
         }
 
-        if ($end === null) {
-            //Return single element.
-            return array_slice($array, $start, 1);
-        }
-
         //Return range of elements.
         $length = $end - $start;
 
