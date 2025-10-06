@@ -32,6 +32,15 @@ class SimilarityTest extends TestCase
     }
 
     /**
+     * Test the DIFF_IGNORE_LINE_BLANK option
+     */
+    public function testIgnoreLines(): void
+    {
+        $similarity = new Similarity('AAA', 'AAB', ['ignoreLines' => Similarity::DIFF_IGNORE_LINE_BLANK]);
+        $this->assertEquals(2 / 3, $similarity->getSimilarity(Similarity::CALC_FAST));
+    }
+
+    /**
      * Test the statistics function
      */
     public function testGetDifference(): void

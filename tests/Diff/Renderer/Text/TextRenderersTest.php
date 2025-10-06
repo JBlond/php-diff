@@ -32,13 +32,12 @@ class TextRenderersTest extends TestCase
     /**
      * TextRenderersTest constructor.
      *
-     * @param   null    $name
-     * @param   array   $data
-     * @param   string  $dataName
+     * @param   ?string $name
+     * @param    array  $data
+     * @param    string $dataName
      */
-    public function __construct($name = null, array $data = [], $dataName = '')
+    public function __construct($name = null, array $data = [], string $dataName = '')
     {
-        //$this->genOutputFiles = true;
         parent::__construct($name, $data, $dataName);
     }
 
@@ -61,6 +60,23 @@ class TextRenderersTest extends TestCase
         }
 
         $this->assertStringEqualsFile('tests/resources/textContext.txt', $result);
+    }
+
+    /**
+     * Test the output of the text-context renderer without any change.
+     *
+     * @covers \jblond\Diff\Renderer\MainRenderer
+     */
+    public function testContextNoChanges(): void
+    {
+        $diff = new Diff(
+            file_get_contents('tests/resources/a.txt'),
+            file_get_contents('tests/resources/a.txt')
+        );
+
+        $renderer = new Diff\Renderer\Text\InlineCli();
+        $result   = $diff->render($renderer);
+        $this->assertEmpty($result);
     }
 
     /**
@@ -102,6 +118,26 @@ class TextRenderersTest extends TestCase
             file_put_contents('textUnifiedCli.txt', $result);
         }
         $this->assertStringEqualsFile('tests/resources/textUnifiedCli.txt', $result);
+    }
+
+    /**
+     * Test the output of the CLI Unified renderer with colors.
+     *
+     * @covers \jblond\Diff\Renderer\Text\UnifiedCli
+     */
+    public function testUnifiedCliColorOption(): void
+    {
+        $diff = new Diff(
+            file_get_contents('tests/resources/a.txt'),
+            file_get_contents('tests/resources/b.txt')
+        );
+
+        $renderer = new Diff\Renderer\Text\UnifiedCli(['cliColor' => true]);
+        $result   = $diff->render($renderer);
+        if ($this->genOutputFiles) {
+            file_put_contents('textUnifiedCliColor.txt', $result);
+        }
+        $this->assertStringEqualsFile('tests/resources/textUnifiedCliColor.txt', $result);
     }
 
     /**
