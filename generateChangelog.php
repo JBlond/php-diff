@@ -5,8 +5,8 @@ use DigiLive\GitChangelog\Renderers\MarkDown;
 require 'vendor/autoload.php';
 
 $changelogOptions = [
-    'headTagName' => '2.4.0',
-    'headTagDate' => '2021-08-23',
+    'headTagName' => '2.5.0',
+    'headTagDate' => '2025-10-06',
     'titleOrder' => 'ASC',
 ];
 $changelogLabels = ['Add', 'Cut', 'Fix', 'Bump', 'Document','Optimize'];
