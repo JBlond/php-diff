@@ -67,7 +67,10 @@
             "@php_test",
             "phpunit --colors=always --testdox"
         ],
-        "coverage": "phpunit --colors=always --coverage-html codeCoverage"
+        "coverage": [
+            "@putenv XDEBUG_MODE=coverage",
+            "phpunit --colors=always --coverage-html codeCoverage"
+        ]
     },
     "scripts-descriptions": {
         "phpunit": "Run PHPUnit tests",
