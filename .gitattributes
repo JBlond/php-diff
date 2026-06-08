@@ -4,6 +4,7 @@ assets export-ignore
 changelog.md export-ignore
 docker-compose.yml export-ignore
 example export-ignore
+generateChangelog.php export-ignore
 phpcs.xml export-ignore
 phpunit.xml export-ignore
 tests export-ignore
