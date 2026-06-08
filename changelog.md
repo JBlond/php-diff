@@ -1,6 +1,10 @@
 # Changelog
 
-## 2.5.0 (2025-10-06)
+## 2.5.1 (2026-06-08)
+
+* Add: assets and example to export-ignore ([05efcc6][187])
+
+## v2.5.0 (2025-10-06)
 
 * Add: A test the DIFF_IGNORE_LINE_BLANK option ([b794e3d][186])
 * Add: Docker compose dev environment. ([06d1b8f][185])
@@ -8,6 +12,7 @@
 * Add: Json renderer Options ([94460ef][183], [8bee18d][182])
 * Add: More test cases ([33cbfa3][181])
 * Add: More tests ([1cf2193][180])
+* Add: Test ([c903699][179])
 * Add: Test for color output ([2ce76ac][178])
 * Add: Test for no changes ([bbf90b5][177])
 * Add TupleSort test ([a0323ed][176])
@@ -526,3 +531,4 @@ $context lines, general cleanup ([690419d][13])
 [184]:https://github.com/JBlond/php-diff/commit/46528f2
 [185]:https://github.com/JBlond/php-diff/commit/06d1b8f
 [186]:https://github.com/JBlond/php-diff/commit/b794e3d
+[187]:https://github.com/JBlond/php-diff/commit/05efcc6
