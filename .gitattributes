@@ -1,5 +1,11 @@
-tests export-ignore
 .editorconfig export-ignore
 .gitattributes export-ignore
+assets export-ignore
+changelog.md export-ignore
+docker-compose.yml export-ignore
+example export-ignore
+generateChangelog.php export-ignore
 phpcs.xml export-ignore
 tests/resources/eol/*.txt binary
+phpunit.xml export-ignore
+tests export-ignore
