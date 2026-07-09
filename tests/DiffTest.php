@@ -165,8 +165,7 @@ class DiffTest extends TestCase
      */
     public function testIsIdentical(): void
     {
-        $this->assertEquals(
-            false,
+        $this->assertFalse(
             $this->diff->isIdentical()
         );
     }

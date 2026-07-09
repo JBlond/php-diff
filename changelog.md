@@ -1,6 +1,10 @@
 # Changelog
 
-## 2.5.1 (2026-06-08)
+## 2.5.2 (2026-07-09)
+
+* Add: generator to export-ignore ([7435c5d][188])
+
+## v2.5.1 (2026-06-08)
 
 * Add: assets and example to export-ignore ([05efcc6][187])
 
@@ -532,3 +536,4 @@ $context lines, general cleanup ([690419d][13])
 [185]:https://github.com/JBlond/php-diff/commit/06d1b8f
 [186]:https://github.com/JBlond/php-diff/commit/b794e3d
 [187]:https://github.com/JBlond/php-diff/commit/05efcc6
+[188]:https://github.com/JBlond/php-diff/commit/7435c5d
